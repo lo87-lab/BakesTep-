@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +25,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--cream);
@@ -37,13 +34,10 @@ body {
   line-height: 1.6;
 }
 
-button, input {
-  font: inherit;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
 
-button {
-  cursor: pointer;
-}
+.hidden { display: none !important; }
 
 /* NAVIGATION */
 
@@ -68,9 +62,7 @@ button {
   letter-spacing: 1px;
 }
 
-.logo span {
-  color: var(--caramel);
-}
+.logo span { color: var(--caramel); }
 
 .nav-links {
   display: flex;
@@ -84,9 +76,7 @@ button {
   font-size: .95rem;
 }
 
-.nav-links a:hover {
-  color: var(--caramel);
-}
+.nav-links a:hover { color: var(--caramel); }
 
 /* HERO */
 
@@ -98,9 +88,7 @@ button {
   color: var(--paper);
 }
 
-.hero-content {
-  max-width: 850px;
-}
+.hero-content { max-width: 850px; }
 
 .hero-label {
   color: #e6c29d;
@@ -116,9 +104,7 @@ button {
   margin-bottom: 20px;
 }
 
-.hero h1 span {
-  color: #e0b687;
-}
+.hero h1 span { color: #e0b687; }
 
 .hero p {
   max-width: 620px;
@@ -144,15 +130,11 @@ button {
   transform: translateY(-2px);
 }
 
-/* GENERAL SECTIONS */
+/* SECTIONS */
 
-section {
-  padding: 70px 7%;
-}
+section { padding: 70px 7%; }
 
-.section-heading {
-  margin-bottom: 30px;
-}
+.section-heading { margin-bottom: 30px; }
 
 .section-heading .eyebrow {
   color: var(--caramel);
@@ -172,11 +154,7 @@ section {
   max-width: 650px;
 }
 
-/* CATEGORY CARDS */
-
-.category-section {
-  background: var(--paper);
-}
+.category-section { background: var(--paper); }
 
 .category-grid {
   display: grid;
@@ -231,11 +209,9 @@ section {
   font-weight: bold;
 }
 
-/* RECIPE SECTION */
+/* RECIPE LIBRARY */
 
-.recipe-section {
-  background: var(--cream);
-}
+.recipe-section { background: var(--cream); }
 
 .recipe-toolbar {
   display: flex;
@@ -253,7 +229,7 @@ section {
 
 .search-box {
   width: 100%;
-  max-width: 330px;
+  max-width: 450px;
   padding: 12px 15px;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -262,15 +238,64 @@ section {
   outline: none;
 }
 
-.search-box:focus {
-  border-color: var(--caramel);
+.search-box:focus { border-color: var(--caramel); }
+
+.recipe-library {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
 }
 
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+.recipe-category-section {
+  scroll-margin-top: 105px;
 }
+
+.recipe-category-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.recipe-category-heading h3 {
+  color: var(--brown);
+  font-size: 1.5rem;
+}
+
+.recipe-scroll-hint {
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+/* HORIZONTAL SCROLLING */
+
+.recipe-rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 5px 3px 18px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--caramel) var(--border);
+}
+
+.recipe-rail::-webkit-scrollbar { height: 8px; }
+
+.recipe-rail::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 20px;
+}
+
+.recipe-rail::-webkit-scrollbar-thumb {
+  background: var(--caramel);
+  border-radius: 20px;
+}
+
+/* RECIPE CARDS */
 
 .recipe-card {
   background: var(--paper);
@@ -285,17 +310,33 @@ section {
   box-shadow: 0 8px 20px rgba(92,61,46,.08);
 }
 
+.recipe-rail .recipe-card {
+  flex: 0 0 245px;
+  width: 245px;
+  scroll-snap-align: start;
+}
+
 .recipe-visual {
-  height: 180px;
+  height: 175px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 5rem;
   background: linear-gradient(135deg, #e9d6c1, #f7eadb);
+  overflow: hidden;
+}
+
+.recipe-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .recipe-body {
-  padding: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
 }
 
 .recipe-category {
@@ -308,7 +349,7 @@ section {
 .recipe-body h3 {
   color: var(--brown);
   margin: 7px 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .recipe-body p {
@@ -319,7 +360,7 @@ section {
 
 .recipe-meta {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
   font-size: .85rem;
   color: var(--muted);
@@ -333,11 +374,22 @@ section {
   padding: 10px 16px;
   border-radius: 4px;
   width: 100%;
+  margin-top: auto;
 }
 
-.recipe-button:hover {
-  background: var(--caramel);
+.recipe-button:hover { background: var(--caramel); }
+
+/* SEARCH RESULTS */
+
+.recipe-search-results { margin-top: 25px; }
+
+.recipe-search-results .recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
+
+.recipe-search-results .recipe-card { width: 100%; }
 
 .empty-state {
   display: none;
@@ -348,15 +400,20 @@ section {
   border-radius: 8px;
 }
 
+.search-reset {
+  border: 1px solid var(--border);
+  background: #eee1d2;
+  color: var(--brown);
+  padding: 9px 14px;
+  border-radius: 5px;
+  margin: 10px 0 18px;
+}
+
 /* INGREDIENT LIBRARY */
 
-.ingredient-section {
-  background: #f0e5d7;
-}
+.ingredient-section { background: #f0e5d7; }
 
-.ingredient-search-wrapper {
-  margin-bottom: 25px;
-}
+.ingredient-search-wrapper { margin-bottom: 25px; }
 
 .ingredient-grid {
   display: grid;
@@ -386,9 +443,7 @@ section {
   background: linear-gradient(135deg, #e8d5c0, #f8eee2);
 }
 
-.ingredient-card-body {
-  padding: 20px;
-}
+.ingredient-card-body { padding: 20px; }
 
 .ingredient-card-body h3 {
   color: var(--brown);
@@ -417,22 +472,16 @@ section {
   border-radius: 5px;
 }
 
-.ingredient-button:hover {
-  background: #dfc4a7;
-}
+.ingredient-button:hover { background: #dfc4a7; }
 
-.ingredient-detail {
-  line-height: 1.7;
-}
+.ingredient-detail { line-height: 1.7; }
 
 .ingredient-detail h3 {
   color: var(--brown);
   margin-top: 18px;
 }
 
-.ingredient-detail ul {
-  padding-left: 22px;
-}
+.ingredient-detail ul { padding-left: 22px; }
 
 .ingredient-shopping-links {
   display: flex;
@@ -451,11 +500,14 @@ section {
   font-size: .9rem;
 }
 
-.ingredient-shopping-links a:hover {
-  background: #dfc4a7;
+.ingredient-shopping-links a:hover { background: #dfc4a7; }
+
+.ingredient-detail a {
+  color: #885c38;
+  font-weight: bold;
 }
 
-/* LEARNING SECTION */
+/* LEARNING */
 
 .feature-strip {
   background: #e8ddd0;
@@ -465,22 +517,16 @@ section {
   text-align: center;
 }
 
-.feature {
-  padding: 20px;
-}
+.feature { padding: 20px; }
 
-.feature span {
-  font-size: 2.2rem;
-}
+.feature span { font-size: 2.2rem; }
 
 .feature h3 {
   color: var(--brown);
   margin: 10px 0;
 }
 
-.feature p {
-  color: var(--muted);
-}
+.feature p { color: var(--muted); }
 
 /* FOOTER */
 
@@ -532,9 +578,7 @@ footer p {
   align-items: center;
 }
 
-.modal-top h2 {
-  color: var(--brown);
-}
+.modal-top h2 { color: var(--brown); }
 
 .close-button {
   background: none;
@@ -567,64 +611,49 @@ footer p {
   margin-top: 18px;
 }
 
-.ingredient-detail > p {
-  margin-top: 10px;
-}
-
-.ingredient-detail a {
-  color: #885c38;
-  font-weight: bold;
-}
+.ingredient-detail > p { margin-top: 10px; }
 
 /* RESPONSIVE */
 
 @media (max-width: 850px) {
   .category-grid,
-  .recipe-grid,
   .ingredient-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipe-search-results .recipe-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .navbar {
-    justify-content: center;
-  }
+  .navbar { justify-content: center; }
+  .nav-links { justify-content: center; gap: 14px; }
 
-  .nav-links {
-    justify-content: center;
-    gap: 14px;
-  }
+  .hero { padding: 65px 7%; }
 
-  .hero {
-    padding: 65px 7%;
-  }
-
-  section {
-    padding: 50px 6%;
-  }
+  section { padding: 50px 6%; }
 
   .category-grid,
-  .recipe-grid,
   .ingredient-grid,
-  .feature-strip {
+  .feature-strip,
+  .recipe-search-results .recipe-grid {
     grid-template-columns: 1fr;
   }
 
-  .section-heading h2 {
-    font-size: 1.9rem;
-  }
+  .section-heading h2 { font-size: 1.9rem; }
 
-  .modal-content {
-    padding: 22px;
+  .modal-content { padding: 22px; }
+
+  .recipe-rail .recipe-card {
+    flex-basis: 220px;
+    width: 220px;
   }
 }
 </style>
 </head>
 
 <body>
-
-<!-- NAVIGATION -->
 
 <nav class="navbar">
   <div class="logo">Bake<span>Lab</span></div>
@@ -638,24 +667,19 @@ footer p {
   </div>
 </nav>
 
-<!-- HERO -->
-
 <header class="hero" id="home">
   <div class="hero-content">
     <div class="hero-label">Your baking journey starts here</div>
-
     <h1>A little knowledge<br>makes a better <span>bake.</span></h1>
-
     <p>
       Explore recipes, discover ingredients, learn baking techniques,
       and turn your curiosity into something delicious.
     </p>
-
     <a href="#categories" class="primary-button">Explore the Bakery</a>
   </div>
 </header>
 
-<!-- BAKING CATEGORIES -->
+<!-- CATEGORY SHORTCUTS -->
 
 <section class="category-section" id="categories">
 
@@ -721,31 +745,98 @@ footer p {
 
   <div class="section-heading">
     <div class="eyebrow">Recipe collection</div>
-    <h2 id="recipe-heading">All Recipes</h2>
+    <h2>Explore the Recipe Library</h2>
     <p>
-      Find something to make, explore the ingredients,
-      and follow each recipe at your own pace.
+      Browse different types of baking, discover new recipes,
+      and find something to make.
     </p>
   </div>
 
   <div class="recipe-toolbar">
-    <div class="filter-label" id="filter-label">Showing all recipes</div>
+    <div class="filter-label" id="filter-label">
+      Browse recipes by category
+    </div>
 
     <input
       class="search-box"
       type="search"
       id="recipe-search"
-      placeholder="Search recipes..."
+      placeholder="Search recipes, ingredients, desserts..."
       aria-label="Search recipes"
     >
   </div>
 
-  <div class="recipe-grid" id="recipe-grid"></div>
+  <!-- SEARCH RESULTS -->
 
-  <div class="empty-state" id="empty-state">
-    No recipes found. Try another search.
+  <div id="recipe-search-results" class="recipe-search-results hidden">
+
+    <h3 id="search-results-title">Search Results</h3>
+
+    <button class="search-reset" id="search-reset" type="button">
+      Back to Recipe Library
+    </button>
+
+    <div class="recipe-grid" id="search-results-grid"></div>
+
+    <div class="empty-state" id="search-empty-state">
+      No recipes found. Try another search.
+    </div>
+
   </div>
 
+  <!-- CATEGORY SCROLL ROWS -->
+
+  <div class="recipe-library" id="recipe-library">
+
+    <div class="recipe-category-section" id="section-cookies">
+      <div class="recipe-category-heading">
+        <h3>🍪 Cookies & Brownies</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-cookies"></div>
+    </div>
+
+    <div class="recipe-category-section" id="section-cakes">
+      <div class="recipe-category-heading">
+        <h3>🎂 Cakes & Cupcakes</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-cakes"></div>
+    </div>
+
+    <div class="recipe-category-section" id="section-bread">
+      <div class="recipe-category-heading">
+        <h3>🍞 Bread & Dough</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-bread"></div>
+    </div>
+
+    <div class="recipe-category-section" id="section-pastries">
+      <div class="recipe-category-heading">
+        <h3>🥐 Pastries</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-pastries"></div>
+    </div>
+
+    <div class="recipe-category-section" id="section-pies">
+      <div class="recipe-category-heading">
+        <h3>🥧 Pies & Tarts</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-pies"></div>
+    </div>
+
+    <div class="recipe-category-section" id="section-treats">
+      <div class="recipe-category-heading">
+        <h3>🍮 Sweet Treats</h3>
+        <span class="recipe-scroll-hint">Swipe to explore →</span>
+      </div>
+      <div class="recipe-rail" id="rail-treats"></div>
+    </div>
+
+  </div>
 </section>
 
 <!-- INGREDIENT LIBRARY -->
@@ -803,8 +894,6 @@ footer p {
 
 </section>
 
-<!-- FOOTER -->
-
 <footer>
   <div class="logo">Bake<span>Lab</span></div>
   <p>Learn something new. Make something good.</p>
@@ -814,15 +903,11 @@ footer p {
 <!-- RECIPE MODAL -->
 
 <div class="modal" id="recipe-modal">
-
   <div class="modal-content">
 
     <div class="modal-top">
       <h2 id="modal-title">Recipe</h2>
-
-      <button class="close-button"
-        onclick="closeRecipe()"
-        aria-label="Close recipe">&times;</button>
+      <button class="close-button" onclick="closeRecipe()" aria-label="Close recipe">&times;</button>
     </div>
 
     <p class="modal-description" id="modal-description"></p>
@@ -837,26 +922,20 @@ footer p {
       Baking times can vary between ovens. Follow safe food handling
       and use the recipe as a starting point while learning.
     </div>
-
   </div>
 </div>
 
 <!-- INGREDIENT MODAL -->
 
 <div class="modal" id="ingredient-modal">
-
   <div class="modal-content ingredient-detail">
 
     <div class="modal-top">
       <h2 id="ingredient-modal-title">Ingredient</h2>
-
-      <button class="close-button"
-        onclick="closeIngredient()"
-        aria-label="Close ingredient">&times;</button>
+      <button class="close-button" onclick="closeIngredient()" aria-label="Close ingredient">&times;</button>
     </div>
 
     <p class="ingredient-tag" id="ingredient-modal-category"></p>
-
     <p id="ingredient-modal-description"></p>
 
     <h3>What does it do?</h3>
@@ -869,17 +948,12 @@ footer p {
     <ul id="ingredient-modal-recipes"></ul>
 
     <h3>Where to Find It</h3>
-    <p>
-      Explore shopping results for this ingredient.
-      Prices and availability depend on the store.
-    </p>
-
-    <div class="ingredient-shopping-links"
-      id="ingredient-shopping-links"></div>
+    <p>Explore shopping results for this ingredient. Prices and availability depend on the store.</p>
+    <div class="ingredient-shopping-links" id="ingredient-shopping-links"></div>
 
     <div class="modal-note">
-      Substitutions may change the flavor, texture, rise, or moisture
-      of your baked goods. Always check the specific recipe.
+      Substitutions may change flavor, texture, rise, or moisture.
+      Always check the specific recipe.
     </div>
 
   </div>
@@ -887,10 +961,11 @@ footer p {
 
 <script>
 
-/* INGREDIENT DATABASE */
+/* ==========================================
+   INGREDIENT DATABASE
+========================================== */
 
 const ingredients = [
-
 {
   name: "All-Purpose Flour",
   icon: "🌾",
@@ -904,7 +979,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies", "Simple Banana Bread"],
   shoppingSearch: "all purpose flour"
 },
-
 {
   name: "Granulated Sugar",
   icon: "🍚",
@@ -918,7 +992,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
   shoppingSearch: "granulated sugar"
 },
-
 {
   name: "Butter",
   icon: "🧈",
@@ -932,7 +1005,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
   shoppingSearch: "unsalted butter"
 },
-
 {
   name: "Eggs",
   icon: "🥚",
@@ -946,7 +1018,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
   shoppingSearch: "large eggs"
 },
-
 {
   name: "Yeast",
   icon: "🫧",
@@ -960,7 +1031,6 @@ const ingredients = [
   recipes: ["Cinnamon Rolls"],
   shoppingSearch: "active dry yeast"
 },
-
 {
   name: "Chocolate",
   icon: "🍫",
@@ -974,7 +1044,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Fudgy Brownies"],
   shoppingSearch: "baking chocolate chocolate chips"
 },
-
 {
   name: "Baking Powder",
   icon: "🧁",
@@ -988,7 +1057,6 @@ const ingredients = [
   recipes: ["Vanilla Cupcakes"],
   shoppingSearch: "baking powder"
 },
-
 {
   name: "Vanilla Extract",
   icon: "🌼",
@@ -1002,7 +1070,6 @@ const ingredients = [
   recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Vanilla Pudding"],
   shoppingSearch: "vanilla extract"
 },
-
 {
   name: "Milk",
   icon: "🥛",
@@ -1016,7 +1083,6 @@ const ingredients = [
   recipes: ["Vanilla Cupcakes", "Cinnamon Rolls", "Vanilla Pudding"],
   shoppingSearch: "milk"
 },
-
 {
   name: "Cinnamon",
   icon: "🪵",
@@ -1030,14 +1096,15 @@ const ingredients = [
   recipes: ["Cinnamon Rolls", "Apple Pie"],
   shoppingSearch: "ground cinnamon"
 }
-
 ];
 
-/* RECIPE DATABASE */
+/* ==========================================
+   LOCAL RECIPE DATABASE
+========================================== */
 
 const recipes = [
-
 {
+  id: "local-cookie",
   name: "Chocolate Chip Cookies",
   category: "Cookies & Brownies",
   icon: "🍪",
@@ -1065,8 +1132,8 @@ const recipes = [
     "Allow the cookies to cool before serving."
   ]
 },
-
 {
+  id: "local-brownies",
   name: "Fudgy Brownies",
   category: "Cookies & Brownies",
   icon: "🍫",
@@ -1092,8 +1159,8 @@ const recipes = [
     "Allow to cool before cutting."
   ]
 },
-
 {
+  id: "local-cupcakes",
   name: "Vanilla Cupcakes",
   category: "Cakes & Cupcakes",
   icon: "🧁",
@@ -1119,8 +1186,8 @@ const recipes = [
     "Allow the cupcakes to cool completely before decorating."
   ]
 },
-
 {
+  id: "local-banana",
   name: "Simple Banana Bread",
   category: "Bread & Dough",
   icon: "🍌",
@@ -1148,8 +1215,8 @@ const recipes = [
     "Let cool before slicing."
   ]
 },
-
 {
+  id: "local-cinnamon",
   name: "Cinnamon Rolls",
   category: "Bread & Dough",
   icon: "🥐",
@@ -1177,8 +1244,8 @@ const recipes = [
     "Bake at 350°F (175°C) until golden and fully baked."
   ]
 },
-
 {
+  id: "local-apple",
   name: "Apple Pie",
   category: "Pies & Tarts",
   icon: "🥧",
@@ -1204,8 +1271,8 @@ const recipes = [
     "Allow the pie to cool before slicing."
   ]
 },
-
 {
+  id: "local-pudding",
   name: "Vanilla Pudding",
   category: "Sweet Treats",
   icon: "🍮",
@@ -1230,8 +1297,8 @@ const recipes = [
     "Refrigerate until chilled."
   ]
 },
-
 {
+  id: "local-croissant",
   name: "Butter Croissants",
   category: "Pastries",
   icon: "🥐",
@@ -1256,8 +1323,8 @@ const recipes = [
     "Bake in a preheated oven until golden brown and fully baked."
   ]
 },
-
 {
+  id: "local-lemon",
   name: "Lemon Tart",
   category: "Pies & Tarts",
   icon: "🍋",
@@ -1282,143 +1349,370 @@ const recipes = [
     "Cool completely before serving."
   ]
 }
-
 ];
 
-/* CATEGORY FILTER */
+/* ==========================================
+   API CONFIGURATION
+========================================== */
 
-let activeCategory = "All";
+const MEAL_API = "https://www.themealdb.com/api/json/v1/1";
+const onlineRecipes = [];
+const loadedCategoryNames = new Set();
 
-const recipeGrid = document.getElementById("recipe-grid");
-const searchInput = document.getElementById("recipe-search");
+const categoryConfig = {
+  "Cookies & Brownies": {
+    rail: "rail-cookies",
+    section: "section-cookies",
+    count: "count-cookies",
+    icon: "🍪",
+    searches: ["cookie", "brownie", "chocolate"]
+  },
+  "Cakes & Cupcakes": {
+    rail: "rail-cakes",
+    section: "section-cakes",
+    count: "count-cakes",
+    icon: "🎂",
+    searches: ["cake", "cupcake"]
+  },
+  "Bread & Dough": {
+    rail: "rail-bread",
+    section: "section-bread",
+    count: "count-bread",
+    icon: "🍞",
+    searches: ["bread", "dough"]
+  },
+  "Pastries": {
+    rail: "rail-pastries",
+    section: "section-pastries",
+    count: "count-pastries",
+    icon: "🥐",
+    searches: ["pastry", "croissant"]
+  },
+  "Pies & Tarts": {
+    rail: "rail-pies",
+    section: "section-pies",
+    count: "count-pies",
+    icon: "🥧",
+    searches: ["pie", "tart"]
+  },
+  "Sweet Treats": {
+    rail: "rail-treats",
+    section: "section-treats",
+    count: "count-treats",
+    icon: "🍮",
+    searches: ["dessert", "pudding"]
+  }
+};
 
-function renderRecipes() {
+/* ==========================================
+   HELPER: SAFE TEXT FOR HTML
+========================================== */
 
-  const searchText = searchInput.value.toLowerCase();
-
-  const filteredRecipes = recipes.filter(recipe => {
-
-    const matchesCategory =
-      activeCategory === "All" ||
-      recipe.category === activeCategory;
-
-    const matchesSearch =
-      recipe.name.toLowerCase().includes(searchText) ||
-      recipe.category.toLowerCase().includes(searchText) ||
-      recipe.description.toLowerCase().includes(searchText);
-
-    return matchesCategory && matchesSearch;
-  });
-
-  recipeGrid.innerHTML = "";
-
-  filteredRecipes.forEach(recipe => {
-
-    const card = document.createElement("article");
-    card.className = "recipe-card";
-
-    card.innerHTML = `
-      <div class="recipe-visual">${recipe.icon}</div>
-
-      <div class="recipe-body">
-
-        <div class="recipe-category">${recipe.category}</div>
-
-        <h3>${recipe.name}</h3>
-
-        <p>${recipe.description}</p>
-
-        <div class="recipe-meta">
-          <span>⏱ ${recipe.time}</span>
-          <span>✦ ${recipe.level}</span>
-        </div>
-
-        <button class="recipe-button">
-          View Recipe
-        </button>
-
-      </div>
-    `;
-
-    card.querySelector(".recipe-button").addEventListener("click", () => {
-      openRecipe(recipe);
-    });
-
-    recipeGrid.appendChild(card);
-  });
-
-  document.getElementById("empty-state").style.display =
-    filteredRecipes.length === 0 ? "block" : "none";
-
-  document.getElementById("filter-label").textContent =
-    activeCategory === "All"
-    ? `Showing all ${filteredRecipes.length} recipes`
-    : `Showing ${filteredRecipes.length} recipes in ${activeCategory}`;
-
-  document.getElementById("recipe-heading").textContent =
-    activeCategory === "All" ? "All Recipes" : activeCategory;
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
 }
 
-/* CATEGORY COUNTS */
+/* ==========================================
+   CREATE RECIPE CARD
+========================================== */
+
+function createRecipeCard(recipe) {
+  const card = document.createElement("article");
+  card.className = "recipe-card";
+
+  const visual = recipe.image
+    ? `<img src="${escapeHTML(recipe.image)}" alt="${escapeHTML(recipe.name)}" loading="lazy">`
+    : escapeHTML(recipe.icon || "🍰");
+
+  card.innerHTML = `
+    <div class="recipe-visual">${visual}</div>
+    <div class="recipe-body">
+      <div class="recipe-category">${escapeHTML(recipe.category)}</div>
+      <h3>${escapeHTML(recipe.name)}</h3>
+      <p>${escapeHTML(recipe.description || "Explore this recipe.")}</p>
+      <div class="recipe-meta">
+        <span>⏱ ${escapeHTML(recipe.time || "Varies")}</span>
+        <span>✦ ${escapeHTML(recipe.level || "Explore")}</span>
+      </div>
+      <button class="recipe-button" type="button">View Recipe</button>
+    </div>
+  `;
+
+  card.querySelector(".recipe-button").addEventListener("click", () => {
+    openRecipe(recipe);
+  });
+
+  return card;
+}
+
+/* ==========================================
+   RENDER CATEGORY RAILS
+========================================== */
+
+function getRecipesForCategory(category) {
+  const local = recipes.filter(recipe => recipe.category === category);
+  const online = onlineRecipes.filter(recipe => recipe.category === category);
+
+  const seen = new Set();
+  return [...local, ...online].filter(recipe => {
+    const key = recipe.id || recipe.name;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function renderRecipeSections() {
+  Object.entries(categoryConfig).forEach(([category, config]) => {
+    const rail = document.getElementById(config.rail);
+    if (!rail) return;
+
+    rail.innerHTML = "";
+    const list = getRecipesForCategory(category);
+
+    if (!list.length) {
+      rail.innerHTML = `<p class="empty-state" style="display:block">No recipes yet. Try searching online.</p>`;
+      return;
+    }
+
+    list.forEach(recipe => rail.appendChild(createRecipeCard(recipe)));
+  });
+
+  updateCategoryCounts();
+}
+
+/* ==========================================
+   LOAD ONLINE RECIPES
+========================================== */
+
+function normalizeMeal(meal, category) {
+  const ingredientsList = [];
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+
+    if (ingredient && ingredient.trim()) {
+      ingredientsList.push(
+        `${measure ? measure.trim() + " " : ""}${ingredient.trim()}`
+      );
+    }
+  }
+
+  return {
+    id: `api-${meal.idMeal}`,
+    apiId: meal.idMeal,
+    name: meal.strMeal,
+    category,
+    icon: categoryConfig[category]?.icon || "🍰",
+    image: meal.strMealThumb || "",
+    time: "See recipe",
+    level: "Explore",
+    description: `Recipe from TheMealDB${meal.strArea ? " · " + meal.strArea : ""}`,
+    ingredients: ingredientsList,
+    instructions: meal.strInstructions
+      ? meal.strInstructions.split(/\r?\n/).filter(line => line.trim())
+      : ["Instructions are available from the recipe source."],
+    source: meal.strSource || meal.strYoutube || ""
+  };
+}
+
+async function searchMealAPI(term) {
+  const response = await fetch(
+    `${MEAL_API}/search.php?s=${encodeURIComponent(term)}`
+  );
+
+  if (!response.ok) throw new Error("Recipe API request failed");
+
+  const data = await response.json();
+  return data.meals || [];
+}
+
+async function loadOnlineCategory(category) {
+  if (loadedCategoryNames.has(category)) return;
+
+  loadedCategoryNames.add(category);
+
+  const config = categoryConfig[category];
+
+  try {
+    const results = await Promise.all(
+      config.searches.map(term => searchMealAPI(term))
+    );
+
+    const found = results.flat();
+    const seen = new Set();
+
+    found.forEach(meal => {
+      if (seen.has(meal.idMeal)) return;
+      seen.add(meal.idMeal);
+
+      onlineRecipes.push(normalizeMeal(meal, category));
+    });
+  } catch (error) {
+    console.warn("Could not load online recipes for", category, error);
+  }
+
+  renderRecipeSections();
+}
+
+function loadAllOnlineCategories() {
+  Object.keys(categoryConfig).forEach(category => {
+    loadOnlineCategory(category);
+  });
+}
+
+/* ==========================================
+   CATEGORY COUNTS
+========================================== */
 
 function updateCategoryCounts() {
+  Object.entries(categoryConfig).forEach(([category, config]) => {
+    const count = getRecipesForCategory(category).length;
+    const element = document.getElementById(config.count);
 
-  const counts = {
-    "Cookies & Brownies": "count-cookies",
-    "Cakes & Cupcakes": "count-cakes",
-    "Bread & Dough": "count-bread",
-    "Pastries": "count-pastries",
-    "Pies & Tarts": "count-pies",
-    "Sweet Treats": "count-treats"
-  };
-
-  Object.entries(counts).forEach(([category, elementId]) => {
-
-    const count = recipes.filter(recipe =>
-      recipe.category === category
-    ).length;
-
-    document.getElementById(elementId).textContent =
-      `${count} ${count === 1 ? "recipe" : "recipes"}`;
+    if (element) {
+      element.textContent = `${count} ${count === 1 ? "recipe" : "recipes"}`;
+    }
   });
 }
 
-/* CATEGORY CLICK EVENTS */
+/* ==========================================
+   CATEGORY SHORTCUTS
+========================================== */
 
 document.querySelectorAll(".category-card").forEach(card => {
-
   card.addEventListener("click", () => {
+    const category = card.dataset.category;
+    const config = categoryConfig[category];
 
-    activeCategory = card.dataset.category;
+    if (!config) return;
 
-    document.querySelectorAll(".category-card").forEach(c => {
-      c.classList.remove("active");
+    document.querySelectorAll(".category-card').forEach(item => {
+      item.classList.remove("active");
     });
 
     card.classList.add("active");
 
-    searchInput.value = "";
+    clearRecipeSearch();
 
-    renderRecipes();
-
-    document.getElementById("recipes").scrollIntoView({
-      behavior: "smooth"
+    document.getElementById(config.section).scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
+
+    loadOnlineCategory(category);
   });
 });
 
-/* RECIPE SEARCH */
+/* ==========================================
+   SEARCH LOCAL AND ONLINE RECIPES
+========================================== */
 
-searchInput.addEventListener("input", renderRecipes);
+const searchInput = document.getElementById("recipe-search");
+const recipeLibrary = document.getElementById("recipe-library");
+const searchResultsSection = document.getElementById("recipe-search-results");
+const searchResultsGrid = document.getElementById("search-results-grid");
+const searchResultsTitle = document.getElementById("search-results-title");
+const searchEmptyState = document.getElementById("search-empty-state");
 
-/* RECIPE MODAL */
+let searchTimeout;
+
+searchInput.addEventListener("input", () => {
+  clearTimeout(searchTimeout);
+
+  const query = searchInput.value.trim();
+
+  if (!query) {
+    clearRecipeSearch();
+    return;
+  }
+
+  searchTimeout = setTimeout(() => searchAllRecipes(query), 350);
+});
+
+async function searchAllRecipes(query) {
+  query = query || searchInput.value.trim();
+  if (!query) return clearRecipeSearch();
+
+  recipeLibrary.classList.add("hidden");
+  searchResultsSection.classList.remove("hidden");
+  searchResultsGrid.innerHTML = `<p>Searching recipes...</p>`;
+  searchEmptyState.style.display = "none";
+  searchResultsTitle.textContent = `Results for "${query}"`;
+
+  const localMatches = recipes.filter(recipe => {
+    const text = [
+      recipe.name,
+      recipe.category,
+      recipe.description,
+      recipe.ingredients.join(" ")
+    ].join(" ").toLowerCase();
+
+    return text.includes(query.toLowerCase());
+  });
+
+  let apiMatches = [];
+
+  try {
+    const meals = await searchMealAPI(query);
+
+    apiMatches = meals.map(meal => {
+      const category = meal.strCategory || "Sweet Treats";
+      const assignedCategory = Object.keys(categoryConfig).includes(category)
+        ? category
+        : guessCategory(query, meal.strMeal);
+
+      return normalizeMeal(meal, assignedCategory);
+    });
+  } catch (error) {
+    console.warn("Online search unavailable", error);
+  }
+
+  const combined = [...localMatches, ...apiMatches];
+  const unique = Array.from(
+    new Map(combined.map(recipe => [recipe.id || recipe.name, recipe])).values()
+  );
+
+  searchResultsGrid.innerHTML = "";
+
+  unique.forEach(recipe => {
+    searchResultsGrid.appendChild(createRecipeCard(recipe));
+  });
+
+  searchEmptyState.style.display = unique.length ? "none" : "block";
+}
+
+function guessCategory(query, name) {
+  const text = `${query} ${name}`.toLowerCase();
+
+  if (/cookie|brownie|chocolate/.test(text)) return "Cookies & Brownies";
+  if (/cake|cupcake/.test(text)) return "Cakes & Cupcakes";
+  if (/bread|dough|roll/.test(text)) return "Bread & Dough";
+  if (/croissant|pastry|danish/.test(text)) return "Pastries";
+  if (/pie|tart/.test(text)) return "Pies & Tarts";
+
+  return "Sweet Treats";
+}
+
+function clearRecipeSearch() {
+  searchInput.value = "";
+  searchResultsSection.classList.add("hidden");
+  recipeLibrary.classList.remove("hidden");
+}
+
+/* ==========================================
+   RECIPE MODAL
+========================================== */
 
 function openRecipe(recipe) {
-
   document.getElementById("modal-title").textContent = recipe.name;
-
-  document.getElementById("modal-description").textContent =
-    recipe.description;
+  document.getElementById("modal-description").textContent = recipe.description || "";
 
   const ingredientsList = document.getElementById("modal-ingredients");
   const instructionsList = document.getElementById("modal-instructions");
@@ -1426,47 +1720,56 @@ function openRecipe(recipe) {
   ingredientsList.innerHTML = "";
   instructionsList.innerHTML = "";
 
-  recipe.ingredients.forEach(item => {
-
+  (recipe.ingredients || []).forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;
     ingredientsList.appendChild(li);
   });
 
-  recipe.instructions.forEach(item => {
-
+  (recipe.instructions || []).forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;
     instructionsList.appendChild(li);
   });
+
+  const source = recipe.source;
+  if (source && /^https?:\/\//i.test(source)) {
+    const link = document.createElement("a");
+    link.href = source;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "View Original Recipe";
+    link.style.display = "inline-block";
+    link.style.marginTop = "15px";
+    link.style.color = "#885c38";
+
+    document.getElementById("modal-description").appendChild(link);
+  }
 
   document.getElementById("recipe-modal").classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
 function closeRecipe() {
-
   document.getElementById("recipe-modal").classList.remove("show");
   document.body.style.overflow = "";
 }
 
 document.getElementById("recipe-modal").addEventListener("click", event => {
-
-  if (event.target.id === "recipe-modal") {
-    closeRecipe();
-  }
+  if (event.target.id === "recipe-modal") closeRecipe();
 });
 
-/* INGREDIENT LIBRARY DISPLAY */
+/* ==========================================
+   INGREDIENT LIBRARY
+========================================== */
 
 const ingredientGrid = document.getElementById("ingredient-grid");
 const ingredientSearch = document.getElementById("ingredient-search");
 
 function renderIngredients() {
-
   const searchText = ingredientSearch.value.toLowerCase();
 
-  const filteredIngredients = ingredients.filter(ingredient =>
+  const filtered = ingredients.filter(ingredient =>
     ingredient.name.toLowerCase().includes(searchText) ||
     ingredient.category.toLowerCase().includes(searchText) ||
     ingredient.description.toLowerCase().includes(searchText)
@@ -1474,22 +1777,17 @@ function renderIngredients() {
 
   ingredientGrid.innerHTML = "";
 
-  filteredIngredients.forEach(ingredient => {
-
+  filtered.forEach(ingredient => {
     const card = document.createElement("article");
     card.className = "ingredient-card";
 
     card.innerHTML = `
       <div class="ingredient-visual">${ingredient.icon}</div>
-
       <div class="ingredient-card-body">
-        <div class="ingredient-tag">${ingredient.category}</div>
-        <h3>${ingredient.name}</h3>
-        <p>${ingredient.description}</p>
-
-        <button class="ingredient-button">
-          Explore Ingredient
-        </button>
+        <div class="ingredient-tag">${escapeHTML(ingredient.category)}</div>
+        <h3>${escapeHTML(ingredient.name)}</h3>
+        <p>${escapeHTML(ingredient.description)}</p>
+        <button class="ingredient-button" type="button">Explore Ingredient</button>
       </div>
     `;
 
@@ -1501,13 +1799,10 @@ function renderIngredients() {
   });
 
   document.getElementById("ingredient-empty-state").style.display =
-    filteredIngredients.length === 0 ? "block" : "none";
+    filtered.length ? "none" : "block";
 }
 
-/* INGREDIENT DETAILS */
-
 function openIngredient(ingredient) {
-
   const modal = document.getElementById("ingredient-modal");
 
   document.getElementById("ingredient-modal-title").textContent =
@@ -1527,9 +1822,9 @@ function openIngredient(ingredient) {
 
   substitutionList.innerHTML = "";
 
-  ingredient.substitutions.forEach(substitution => {
+  ingredient.substitutions.forEach(item => {
     const li = document.createElement("li");
-    li.textContent = substitution;
+    li.textContent = item;
     substitutionList.appendChild(li);
   });
 
@@ -1538,13 +1833,11 @@ function openIngredient(ingredient) {
 
   recipeList.innerHTML = "";
 
-  ingredient.recipes.forEach(recipeName => {
+  ingredient.recipes.forEach(item => {
     const li = document.createElement("li");
-    li.textContent = recipeName;
+    li.textContent = item;
     recipeList.appendChild(li);
   });
-
-  /* SHOPPING LINKS */
 
   const shoppingLinks =
     document.getElementById("ingredient-shopping-links");
@@ -1553,24 +1846,13 @@ function openIngredient(ingredient) {
 
   shoppingLinks.innerHTML = `
     <a target="_blank" rel="noopener noreferrer"
-       href="https://www.walmart.com/search?q=${searchTerm}">
-       Walmart
-    </a>
-
+       href="https://www.walmart.com/search?q=${searchTerm}">Walmart</a>
     <a target="_blank" rel="noopener noreferrer"
-       href="https://www.target.com/s?searchTerm=${searchTerm}">
-       Target
-    </a>
-
+       href="https://www.target.com/s?searchTerm=${searchTerm}">Target</a>
     <a target="_blank" rel="noopener noreferrer"
-       href="https://www.amazon.com/s?k=${searchTerm}">
-       Amazon
-    </a>
-
+       href="https://www.amazon.com/s?k=${searchTerm}">Amazon</a>
     <a target="_blank" rel="noopener noreferrer"
-       href="https://www.google.com/search?q=${searchTerm}+near+me">
-       Nearby Stores
-    </a>
+       href="https://www.google.com/search?q=${searchTerm}+near+me">Nearby Stores</a>
   `;
 
   modal.classList.add("show");
@@ -1583,30 +1865,29 @@ function closeIngredient() {
 }
 
 document.getElementById("ingredient-modal").addEventListener("click", event => {
-  if (event.target.id === "ingredient-modal") {
-    closeIngredient();
-  }
+  if (event.target.id === "ingredient-modal") closeIngredient();
 });
-
-/* SEARCH INGREDIENTS */
 
 ingredientSearch.addEventListener("input", renderIngredients);
 
-/* CLOSE MODALS WITH ESCAPE */
+/* ==========================================
+   CLOSE MODALS WITH ESCAPE
+========================================== */
 
 document.addEventListener("keydown", event => {
-
   if (event.key === "Escape") {
     closeRecipe();
     closeIngredient();
   }
 });
 
-/* INITIALIZE */
+/* ==========================================
+   INITIALIZE BAKELAB
+========================================== */
 
-updateCategoryCounts();
-renderRecipes();
+renderRecipeSections();
 renderIngredients();
+loadAllOnlineCategories();
 
 </script>
 
