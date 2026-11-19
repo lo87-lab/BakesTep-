@@ -74,14 +74,14 @@ button {
 
 .nav-links {
   display: flex;
-  gap: 22px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: .95rem;
 }
 
 .nav-links a:hover {
@@ -106,7 +106,7 @@ button {
   color: #e6c29d;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 0.8rem;
+  font-size: .8rem;
   margin-bottom: 20px;
 }
 
@@ -223,7 +223,7 @@ section {
   font-size: .92rem;
 }
 
-.category-card .category-count {
+.category-count {
   display: inline-block;
   margin-top: 12px;
   color: var(--caramel);
@@ -320,6 +320,7 @@ section {
 .recipe-meta {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
   font-size: .85rem;
   color: var(--muted);
   margin-bottom: 15px;
@@ -347,7 +348,114 @@ section {
   border-radius: 8px;
 }
 
-/* FEATURE STRIP */
+/* INGREDIENT LIBRARY */
+
+.ingredient-section {
+  background: #f0e5d7;
+}
+
+.ingredient-search-wrapper {
+  margin-bottom: 25px;
+}
+
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ingredient-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.ingredient-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(92,61,46,.08);
+}
+
+.ingredient-visual {
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.5rem;
+  background: linear-gradient(135deg, #e8d5c0, #f8eee2);
+}
+
+.ingredient-card-body {
+  padding: 20px;
+}
+
+.ingredient-card-body h3 {
+  color: var(--brown);
+  margin: 6px 0;
+}
+
+.ingredient-card-body p {
+  font-size: .92rem;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.ingredient-tag {
+  color: var(--caramel);
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ingredient-button {
+  width: 100%;
+  background: #eee1d2;
+  color: var(--brown);
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.ingredient-button:hover {
+  background: #dfc4a7;
+}
+
+.ingredient-detail {
+  line-height: 1.7;
+}
+
+.ingredient-detail h3 {
+  color: var(--brown);
+  margin-top: 18px;
+}
+
+.ingredient-detail ul {
+  padding-left: 22px;
+}
+
+.ingredient-shopping-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.ingredient-shopping-links a {
+  display: inline-block;
+  background: #eee1d2;
+  color: var(--brown);
+  padding: 9px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+.ingredient-shopping-links a:hover {
+  background: #dfc4a7;
+}
+
+/* LEARNING SECTION */
 
 .feature-strip {
   background: #e8ddd0;
@@ -389,7 +497,7 @@ footer p {
   font-size: .9rem;
 }
 
-/* RECIPE MODAL */
+/* MODALS */
 
 .modal {
   display: none;
@@ -459,9 +567,21 @@ footer p {
   margin-top: 18px;
 }
 
+.ingredient-detail > p {
+  margin-top: 10px;
+}
+
+.ingredient-detail a {
+  color: #885c38;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+
 @media (max-width: 850px) {
   .category-grid,
-  .recipe-grid {
+  .recipe-grid,
+  .ingredient-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -486,6 +606,7 @@ footer p {
 
   .category-grid,
   .recipe-grid,
+  .ingredient-grid,
   .feature-strip {
     grid-template-columns: 1fr;
   }
@@ -504,6 +625,7 @@ footer p {
 <body>
 
 <!-- NAVIGATION -->
+
 <nav class="navbar">
   <div class="logo">Bake<span>Lab</span></div>
 
@@ -511,11 +633,13 @@ footer p {
     <a href="#home">Home</a>
     <a href="#categories">Explore</a>
     <a href="#recipes">Recipes</a>
+    <a href="#ingredients">Ingredients</a>
     <a href="#learning">Learn</a>
   </div>
 </nav>
 
 <!-- HERO -->
+
 <header class="hero" id="home">
   <div class="hero-content">
     <div class="hero-label">Your baking journey starts here</div>
@@ -531,7 +655,8 @@ footer p {
   </div>
 </header>
 
-<!-- CATEGORIES -->
+<!-- BAKING CATEGORIES -->
+
 <section class="category-section" id="categories">
 
   <div class="section-heading">
@@ -543,7 +668,7 @@ footer p {
     </p>
   </div>
 
-  <div class="category-grid" id="category-grid">
+  <div class="category-grid">
 
     <button class="category-card" data-category="Cookies & Brownies">
       <span class="category-icon">🍪</span>
@@ -590,13 +715,14 @@ footer p {
   </div>
 </section>
 
-<!-- RECIPES -->
+<!-- RECIPE COLLECTION -->
+
 <section class="recipe-section" id="recipes">
 
   <div class="section-heading">
     <div class="eyebrow">Recipe collection</div>
     <h2 id="recipe-heading">All Recipes</h2>
-    <p id="recipe-subheading">
+    <p>
       Find something to make, explore the ingredients,
       and follow each recipe at your own pace.
     </p>
@@ -622,7 +748,39 @@ footer p {
 
 </section>
 
+<!-- INGREDIENT LIBRARY -->
+
+<section id="ingredients" class="ingredient-section">
+
+  <div class="section-heading">
+    <div class="eyebrow">Know your ingredients</div>
+    <h2>The Ingredient Library</h2>
+    <p>
+      Learn what goes into your favorite baked goods, why ingredients matter,
+      and what alternatives you can explore.
+    </p>
+  </div>
+
+  <div class="ingredient-search-wrapper">
+    <input
+      type="search"
+      id="ingredient-search"
+      class="search-box"
+      placeholder="Search ingredients..."
+      aria-label="Search ingredients"
+    >
+  </div>
+
+  <div class="ingredient-grid" id="ingredient-grid"></div>
+
+  <div class="empty-state" id="ingredient-empty-state">
+    No ingredients found. Try another search.
+  </div>
+
+</section>
+
 <!-- LEARNING SECTION -->
+
 <section class="feature-strip" id="learning">
 
   <div class="feature">
@@ -646,6 +804,7 @@ footer p {
 </section>
 
 <!-- FOOTER -->
+
 <footer>
   <div class="logo">Bake<span>Lab</span></div>
   <p>Learn something new. Make something good.</p>
@@ -653,12 +812,17 @@ footer p {
 </footer>
 
 <!-- RECIPE MODAL -->
+
 <div class="modal" id="recipe-modal">
+
   <div class="modal-content">
 
     <div class="modal-top">
       <h2 id="modal-title">Recipe</h2>
-      <button class="close-button" onclick="closeRecipe()" aria-label="Close recipe">&times;</button>
+
+      <button class="close-button"
+        onclick="closeRecipe()"
+        aria-label="Close recipe">&times;</button>
     </div>
 
     <p class="modal-description" id="modal-description"></p>
@@ -677,7 +841,197 @@ footer p {
   </div>
 </div>
 
+<!-- INGREDIENT MODAL -->
+
+<div class="modal" id="ingredient-modal">
+
+  <div class="modal-content ingredient-detail">
+
+    <div class="modal-top">
+      <h2 id="ingredient-modal-title">Ingredient</h2>
+
+      <button class="close-button"
+        onclick="closeIngredient()"
+        aria-label="Close ingredient">&times;</button>
+    </div>
+
+    <p class="ingredient-tag" id="ingredient-modal-category"></p>
+
+    <p id="ingredient-modal-description"></p>
+
+    <h3>What does it do?</h3>
+    <p id="ingredient-modal-purpose"></p>
+
+    <h3>Substitution Ideas</h3>
+    <ul id="ingredient-modal-substitutions"></ul>
+
+    <h3>Recipes That Use It</h3>
+    <ul id="ingredient-modal-recipes"></ul>
+
+    <h3>Where to Find It</h3>
+    <p>
+      Explore shopping results for this ingredient.
+      Prices and availability depend on the store.
+    </p>
+
+    <div class="ingredient-shopping-links"
+      id="ingredient-shopping-links"></div>
+
+    <div class="modal-note">
+      Substitutions may change the flavor, texture, rise, or moisture
+      of your baked goods. Always check the specific recipe.
+    </div>
+
+  </div>
+</div>
+
 <script>
+
+/* INGREDIENT DATABASE */
+
+const ingredients = [
+
+{
+  name: "All-Purpose Flour",
+  icon: "🌾",
+  category: "Dry Ingredient",
+  description: "A versatile flour used in cookies, cakes, breads, and many other baked goods.",
+  purpose: "Provides structure to baked goods through proteins that form gluten when hydrated and mixed.",
+  substitutions: [
+    "Some recipes may work with cake flour for a softer texture.",
+    "Some recipes can use a suitable gluten-free flour blend, but results may differ."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies", "Simple Banana Bread"],
+  shoppingSearch: "all purpose flour"
+},
+
+{
+  name: "Granulated Sugar",
+  icon: "🍚",
+  category: "Sweetener",
+  description: "A common sweetener used in baking and desserts.",
+  purpose: "Adds sweetness, helps browning, and contributes to texture and moisture.",
+  substitutions: [
+    "Depending on the recipe, brown sugar may be used for a different flavor and texture.",
+    "Other sweeteners may behave differently during baking."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
+  shoppingSearch: "granulated sugar"
+},
+
+{
+  name: "Butter",
+  icon: "🧈",
+  category: "Fat",
+  description: "A dairy ingredient that adds flavor, tenderness, and richness.",
+  purpose: "Adds flavor, helps create texture, and affects how doughs and batters spread.",
+  substitutions: [
+    "Some recipes can use baking margarine.",
+    "Some recipes may work with a suitable neutral oil, but texture can change."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
+  shoppingSearch: "unsalted butter"
+},
+
+{
+  name: "Eggs",
+  icon: "🥚",
+  category: "Binding Ingredient",
+  description: "An ingredient used in many cakes, cookies, breads, and pastries.",
+  purpose: "Helps bind ingredients, adds moisture, and contributes structure.",
+  substitutions: [
+    "Some recipes may use applesauce as an egg alternative.",
+    "Commercial egg replacers may work in certain recipes."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Fudgy Brownies"],
+  shoppingSearch: "large eggs"
+},
+
+{
+  name: "Yeast",
+  icon: "🫧",
+  category: "Leavening",
+  description: "A microorganism used to help yeast dough rise.",
+  purpose: "Produces gas during fermentation, helping dough expand and develop flavor.",
+  substitutions: [
+    "Yeast cannot be directly replaced with baking powder in every bread recipe.",
+    "Quick breads use different leavening methods and require a different recipe."
+  ],
+  recipes: ["Cinnamon Rolls"],
+  shoppingSearch: "active dry yeast"
+},
+
+{
+  name: "Chocolate",
+  icon: "🍫",
+  category: "Flavor Ingredient",
+  description: "Used in baking for flavor, texture, fillings, and decorations.",
+  purpose: "Adds chocolate flavor and can contribute fat and solids depending on the type.",
+  substitutions: [
+    "Chocolate chips, baking chocolate, and cocoa powder are not always interchangeable.",
+    "Use a substitution that matches the recipe's intended form of chocolate."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Fudgy Brownies"],
+  shoppingSearch: "baking chocolate chocolate chips"
+},
+
+{
+  name: "Baking Powder",
+  icon: "🧁",
+  category: "Leavening",
+  description: "A chemical leavening ingredient commonly used in cakes and quick breads.",
+  purpose: "Releases gas in a batter to help baked goods rise.",
+  substitutions: [
+    "Baking soda is not a direct one-to-one replacement.",
+    "A substitute depends on the other acidic ingredients in the recipe."
+  ],
+  recipes: ["Vanilla Cupcakes"],
+  shoppingSearch: "baking powder"
+},
+
+{
+  name: "Vanilla Extract",
+  icon: "🌼",
+  category: "Flavor Ingredient",
+  description: "A flavoring used in cakes, cookies, frostings, and desserts.",
+  purpose: "Adds aroma and flavor without serving as a major structural ingredient.",
+  substitutions: [
+    "Vanilla paste may be suitable in many recipes.",
+    "Vanilla powder may work depending on the product instructions."
+  ],
+  recipes: ["Chocolate Chip Cookies", "Vanilla Cupcakes", "Vanilla Pudding"],
+  shoppingSearch: "vanilla extract"
+},
+
+{
+  name: "Milk",
+  icon: "🥛",
+  category: "Liquid",
+  description: "A liquid ingredient used in batters, doughs, custards, and fillings.",
+  purpose: "Adds moisture, contributes flavor, and helps ingredients combine.",
+  substitutions: [
+    "Some recipes can use unsweetened plant-based milk.",
+    "Different milk types may affect flavor and browning."
+  ],
+  recipes: ["Vanilla Cupcakes", "Cinnamon Rolls", "Vanilla Pudding"],
+  shoppingSearch: "milk"
+},
+
+{
+  name: "Cinnamon",
+  icon: "🪵",
+  category: "Spice",
+  description: "A warm spice used in pastries, breads, cookies, and dessert fillings.",
+  purpose: "Adds flavor and aroma.",
+  substitutions: [
+    "Other warm spices may be used for a different flavor profile.",
+    "Nutmeg can complement cinnamon but does not taste exactly the same."
+  ],
+  recipes: ["Cinnamon Rolls", "Apple Pie"],
+  shoppingSearch: "ground cinnamon"
+}
+
+];
 
 /* RECIPE DATABASE */
 
@@ -707,7 +1061,7 @@ const recipes = [
     "Add flour and baking soda. Mix until a dough forms.",
     "Fold in the chocolate chips.",
     "Place rounded portions of dough on a lined baking sheet.",
-    "Bake for approximately 10–12 minutes, until the edges are lightly golden.",
+    "Bake approximately 10–12 minutes, until the edges are lightly golden.",
     "Allow the cookies to cool before serving."
   ]
 },
@@ -820,7 +1174,7 @@ const recipes = [
     "Spread butter, brown sugar, and cinnamon over the surface.",
     "Roll the dough and cut into individual pieces.",
     "Allow the rolls to rise again.",
-    "Bake at 350°F (175°C) until golden and cooked through."
+    "Bake at 350°F (175°C) until golden and fully baked."
   ]
 },
 
@@ -1029,7 +1383,7 @@ function updateCategoryCounts() {
   });
 }
 
-/* CLICK CATEGORY */
+/* CATEGORY CLICK EVENTS */
 
 document.querySelectorAll(".category-card").forEach(card => {
 
@@ -1053,7 +1407,7 @@ document.querySelectorAll(".category-card").forEach(card => {
   });
 });
 
-/* SEARCH */
+/* RECIPE SEARCH */
 
 searchInput.addEventListener("input", renderRecipes);
 
@@ -1103,10 +1457,148 @@ document.getElementById("recipe-modal").addEventListener("click", event => {
   }
 });
 
+/* INGREDIENT LIBRARY DISPLAY */
+
+const ingredientGrid = document.getElementById("ingredient-grid");
+const ingredientSearch = document.getElementById("ingredient-search");
+
+function renderIngredients() {
+
+  const searchText = ingredientSearch.value.toLowerCase();
+
+  const filteredIngredients = ingredients.filter(ingredient =>
+    ingredient.name.toLowerCase().includes(searchText) ||
+    ingredient.category.toLowerCase().includes(searchText) ||
+    ingredient.description.toLowerCase().includes(searchText)
+  );
+
+  ingredientGrid.innerHTML = "";
+
+  filteredIngredients.forEach(ingredient => {
+
+    const card = document.createElement("article");
+    card.className = "ingredient-card";
+
+    card.innerHTML = `
+      <div class="ingredient-visual">${ingredient.icon}</div>
+
+      <div class="ingredient-card-body">
+        <div class="ingredient-tag">${ingredient.category}</div>
+        <h3>${ingredient.name}</h3>
+        <p>${ingredient.description}</p>
+
+        <button class="ingredient-button">
+          Explore Ingredient
+        </button>
+      </div>
+    `;
+
+    card.querySelector(".ingredient-button").addEventListener("click", () => {
+      openIngredient(ingredient);
+    });
+
+    ingredientGrid.appendChild(card);
+  });
+
+  document.getElementById("ingredient-empty-state").style.display =
+    filteredIngredients.length === 0 ? "block" : "none";
+}
+
+/* INGREDIENT DETAILS */
+
+function openIngredient(ingredient) {
+
+  const modal = document.getElementById("ingredient-modal");
+
+  document.getElementById("ingredient-modal-title").textContent =
+    ingredient.icon + " " + ingredient.name;
+
+  document.getElementById("ingredient-modal-category").textContent =
+    ingredient.category;
+
+  document.getElementById("ingredient-modal-description").textContent =
+    ingredient.description;
+
+  document.getElementById("ingredient-modal-purpose").textContent =
+    ingredient.purpose;
+
+  const substitutionList =
+    document.getElementById("ingredient-modal-substitutions");
+
+  substitutionList.innerHTML = "";
+
+  ingredient.substitutions.forEach(substitution => {
+    const li = document.createElement("li");
+    li.textContent = substitution;
+    substitutionList.appendChild(li);
+  });
+
+  const recipeList =
+    document.getElementById("ingredient-modal-recipes");
+
+  recipeList.innerHTML = "";
+
+  ingredient.recipes.forEach(recipeName => {
+    const li = document.createElement("li");
+    li.textContent = recipeName;
+    recipeList.appendChild(li);
+  });
+
+  /* SHOPPING LINKS */
+
+  const shoppingLinks =
+    document.getElementById("ingredient-shopping-links");
+
+  const searchTerm = encodeURIComponent(ingredient.shoppingSearch);
+
+  shoppingLinks.innerHTML = `
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.walmart.com/search?q=${searchTerm}">
+       Walmart
+    </a>
+
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.target.com/s?searchTerm=${searchTerm}">
+       Target
+    </a>
+
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.amazon.com/s?k=${searchTerm}">
+       Amazon
+    </a>
+
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.google.com/search?q=${searchTerm}+near+me">
+       Nearby Stores
+    </a>
+  `;
+
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeIngredient() {
+  document.getElementById("ingredient-modal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("ingredient-modal").addEventListener("click", event => {
+  if (event.target.id === "ingredient-modal") {
+    closeIngredient();
+  }
+});
+
+/* SEARCH INGREDIENTS */
+
+ingredientSearch.addEventListener("input", renderIngredients);
+
+/* CLOSE MODALS WITH ESCAPE */
+
 document.addEventListener("keydown", event => {
 
   if (event.key === "Escape") {
     closeRecipe();
+    closeIngredient();
   }
 });
 
@@ -1114,6 +1606,7 @@ document.addEventListener("keydown", event => {
 
 updateCategoryCounts();
 renderRecipes();
+renderIngredients();
 
 </script>
 
